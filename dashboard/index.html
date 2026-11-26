@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Momentum Launch Radar — pre-token protocols ranked by momentum</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<a class="skip" href="#board">Skip to the board</a>
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <span class="mark" aria-hidden="true">▲</span>
+      <div>
+        <h1>Momentum Launch Radar</h1>
+        <p class="tagline">Which pre-token protocol is moving fastest — and what to do about it before it launches.</p>
+      </div>
+    </div>
+    <div class="meta" id="meta" aria-live="polite"></div>
+  </div>
+</header>
+<div class="layout">
+  <aside class="side" aria-label="Filters">
+    <nav class="views" aria-label="Views">
+      <a href="#board" data-view="board">Board</a>
+      <a href="#live" data-view="live">Live tokens</a>
+      <a href="#model" data-view="model">Model</a>
+    </nav>
+    <div class="filters" id="filters">
+      <label>Search
+        <input id="q" type="search" placeholder="Name or slug…" autocomplete="off">
+      </label>
+      <label>Category
+        <select id="cat"><option value="">All categories</option></select>
+      </label>
+      <label>Chain
+        <select id="chain"><option value="">All chains</option></select>
+      </label>
+      <label>Min TVL ($M)
+        <input id="minTvl" type="number" min="0" step="10" placeholder="0">
+      </label>
+      <label class="check"><input id="watchOnly" type="checkbox"> Watchlist only</label>
+      <label>Sort by
+        <select id="sort">
+          <option value="implied">Implied value</option>
+          <option value="tvl">TVL</option>
+          <option value="chg">7-day change</option>
+          <option value="age">Age</option>
+        </select>
+      </label>
+      <button id="reset" type="button">Reset filters</button>
+    </div>
+    <p class="note" id="sideNote"></p>
+  </aside>
+  <main class="main" id="main" tabindex="-1"></main>
+</div>
+<footer class="foot">
+  <div class="wrap">
+    <p id="footNote"></p>
+  </div>
+</footer>
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
