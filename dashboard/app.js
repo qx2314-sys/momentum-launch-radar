@@ -168,10 +168,18 @@ function rowHtml(r) {
 
 function renderBoard() {
   var rows = filteredRows();
+  var movers = R.rows.slice().sort(function (a, b) {
+    return (b.change_7d == null ? -Infinity : b.change_7d) - (a.change_7d == null ? -Infinity : a.change_7d);
+  }).slice(0, 3);
+  var moverHtml = movers.map(function (r) {
+    return '<a href="#detail=' + encodeURIComponent(r.slug) + '"><b>' + esc(r.name) + '</b></a> ' +
+      '<span class="heat ' + heatClass(r.change_7d) + '">' + fmtPct(r.change_7d) + '</span>';
+  }).join(' · ');
   var html = '<div class="card"><h2>The board</h2>' +
     '<p class="sub">' + rows.length + ' of ' + R.rows.length + ' protocols, ranked by implied value. ' +
     'The momentum column is the seven-day TVL move, heat-colored: green is surging, red is cooling. ' +
     'The × column is the growth multiplier the move sets (weight 1.0 — the full move counts).</p>' +
+    '<div class="movers">Fastest movers this week: ' + moverHtml + '</div>' +
     '<table><thead><tr><th class="num">#</th><th>Protocol</th><th>Category</th>' +
     '<th class="num">TVL</th><th class="num">7-day</th><th class="num">Implied value</th><th class="num">Growth ×</th></tr></thead><tbody>';
   if (rows.length === 0) html += '<tr><td colspan="7" class="empty">No protocol matches these filters.</td></tr>';
